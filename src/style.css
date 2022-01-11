@@ -1,4 +1,6 @@
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -16,7 +18,8 @@ body {
   color: blue;
 }
 
-#header, #footer {
+#header,
+#footer {
   background-color: darkgray;
   width: 100%;
   height: 20px;
@@ -28,6 +31,7 @@ body {
   max-width: 94%;
   min-height: calc(100vh - 64px);
   margin: 12px auto;
+  text-align: center;
 }
 
 .todo-list {
@@ -36,7 +40,7 @@ body {
   padding: 0;
   background-color: #d3d3d3;
   margin: 0;
-  box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);;
+  box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 .todo-heading {
@@ -64,7 +68,7 @@ body {
 
 #form-add-task {
   margin: 0;
-  width:100%;
+  width: 100%;
   text-align: justify;
 }
 
@@ -126,9 +130,9 @@ body {
   color: darkslategray;
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
   #main {
-    max-width: 85%;
+    max-width: 70%;
     min-height: calc(100vh - 88px);
     margin: 24px auto;
   }

@@ -20,28 +20,28 @@ const compareTaskOrder = (task1, task2) => {
     return 1;
   }
   return 0;
-}
+};
 
 const createTaskItem = (task) => {
   const taskItem = document.createElement('li');
   taskItem.innerHTML = `<div class="item-description"><form id="form-is-completed"> 
     <input type="checkbox" name="isCompleted" value=${task.isCompleted}/></form>
     <p>${task.description}</p> </div>
-    <i class="fa fa-ellipsis-v"></i>`
+    <i class="fa fa-ellipsis-v"></i>`;
   taskItem.id = task.index;
 
   return taskItem;
-}
+};
 
 const todoListHeading = () => {
   const todoHeading = document.createElement('li');
   todoHeading.innerHTML = `<h1> Today's To Do </h1 >
     <button type='button' class='btn btn-refresh'>
-    <i class="fa fa-refresh"></i></button>`
+    <i class="fa fa-refresh"></i></button>`;
   todoHeading.classList.add('todo-heading');
 
   return todoHeading;
-}
+};
 
 const formAddTask = () => {
   const form = document.createElement('form');
@@ -56,7 +56,7 @@ const formAddTask = () => {
   form.appendChild(btnAddTask);
 
   return form;
-}
+};
 
 const btnClearAllCompleted = () => {
   const btnClearCompleted = document.createElement('button');
@@ -66,20 +66,18 @@ const btnClearAllCompleted = () => {
   btnClearCompleted.classList.add('btn', 'btn-clear-completed');
 
   return btnClearCompleted;
-}
+};
 
 window.addEventListener('load', () => {
-
   tasks.sort(compareTaskOrder);
 
   const todoList = document.querySelector('.todo-list');
-
   todoList.appendChild(todoListHeading());
   todoList.appendChild(formAddTask());
 
-  tasks.forEach(task => {
+  tasks.forEach((task) => {
     todoList.appendChild(createTaskItem(task));
-  })
+  });
 
-  todoHeading.parentNode.appendChild(btnClearAllCompleted());
+  todoList.parentNode.appendChild(btnClearAllCompleted());
 });
