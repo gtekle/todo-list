@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("const tasks = [\n  { description: 'Task1', isCompleted: false, index: 1 },\n  { description: 'Task2', isCompleted: false, index: 2 },\n  { description: 'Task3', isCompleted: false, index: 3 },\n  { description: 'Task4', isCompleted: false, index: 4 },\n  { description: 'Task5', isCompleted: false, index: 5 },\n  { description: 'Task6', isCompleted: false, index: 6 },\n  { description: 'Task7', isCompleted: false, index: 7 },\n  { description: 'Task8', isCompleted: false, index: 8 },\n  { description: 'Task9', isCompleted: false, index: 9 },\n];\n\nwindow.addEventListener('load', () => {\n  const todoList = document.querySelector('.todo-list');\n\n  tasks.forEach(task => {\n    const taskItem = document.createElement('li');\n    const form = document.createElement('form');\n    form.innerHTML = '<input type=\"checkbox\" name=\"isCompleted\" value=${task.isCompleted}/>';\n    const taskDescription = document.createElement('p');\n    taskDescription.textContent = task.description;\n\n    taskItem.id = task.index;\n    taskItem.appendChild(form);\n    taskItem.appendChild(taskDescription);\n\n    todoList.appendChild(taskItem);\n  })\n});\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ })
 
