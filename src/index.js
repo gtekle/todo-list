@@ -10,20 +10,25 @@ const tasks = [
   { description: 'Task9', isCompleted: false, index: 9 },
 ];
 
+const createTaskItem = (task) => {
+  const taskItem = document.createElement('li');
+  const form = document.createElement('form');
+  form.innerHTML = '<input type="checkbox" name="isCompleted" value=${task.isCompleted}/>';
+  const taskDescription = document.createElement('p');
+  taskDescription.textContent = task.description;
+
+  taskItem.id = task.index;
+  taskItem.appendChild(form);
+  taskItem.appendChild(taskDescription);
+
+  return taskItem;
+}
+
 window.addEventListener('load', () => {
   const todoList = document.querySelector('.todo-list');
 
   tasks.forEach(task => {
-    const taskItem = document.createElement('li');
-    const form = document.createElement('form');
-    form.innerHTML = '<input type="checkbox" name="isCompleted" value=${task.isCompleted}/>';
-    const taskDescription = document.createElement('p');
-    taskDescription.textContent = task.description;
-
-    taskItem.id = task.index;
-    taskItem.appendChild(form);
-    taskItem.appendChild(taskDescription);
-
-    todoList.appendChild(taskItem);
+    todoList.appendChild(createTaskItem(task));
   })
+
 });
