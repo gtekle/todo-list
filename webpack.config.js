@@ -16,6 +16,9 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    static: './dist',
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Custom template',

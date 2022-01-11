@@ -13,15 +13,17 @@ In this website you can add todo list for the day and you remove tasks that are 
 - [Live Demo Link](https://gtekle.github.io/todo-list/)
 
 ## Getting Started
+- Install Node.js ^12.13
+- clone the repository by running\
+    `git clone https://github.com/gtekle/todo-list.git`
+- navigate to the folder\
+    `cd todo-list`
+- Install packages\
+    `npm install`
+- To run application using webpack-dev-server\
+    `npm start`
 
-- Install Node.js
-- Install text editor of your choice (eg. VS Code)
-- Clone the repository from [here](https://github.com/gtekle/todo-list.git)
-- Change directory to 'cd todo-list'
-- On the root directory, run 'npm install' on the terminal to install packages.
-- Open the index.html under '/dist' folder file in your browser (using live server) to check your updates and navigate to other pages.
-
-## Authors
+## Author
 
 👤 **Tekle Gebreyohannes**
 
