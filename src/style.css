@@ -48,7 +48,7 @@ body {
   justify-content: space-between;
 }
 
-.todo-heading h1 {
+.todo-heading h2 {
   color: darkgray;
   font-size: 20px;
   line-height: 24px;

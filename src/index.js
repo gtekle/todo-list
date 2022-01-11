@@ -35,7 +35,7 @@ const createTaskItem = (task) => {
 
 const todoListHeading = () => {
   const todoHeading = document.createElement('li');
-  todoHeading.innerHTML = `<h1> Today's To Do </h1 >
+  todoHeading.innerHTML = `<h2> Today's Tasks </h2>
     <button type='button' class='btn btn-refresh'>
     <i class="fa fa-refresh"></i></button>`;
   todoHeading.classList.add('todo-heading');
