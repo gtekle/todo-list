@@ -14,6 +14,7 @@ const compareTaskOrder = (task1, task2) => {
 
 const renderTaskItem = (task) => {
   if (!task) return;
+
   const tasksContainer = document.querySelector('.todo-list');
   const taskItem = document.createElement('li');
   taskItem.innerHTML = `<div class="item-description"><form id="form-is-completed"> 
@@ -80,6 +81,11 @@ window.addEventListener('load', () => {
   todoList.appendChild(formAddTask());
 
   DataStore.tasks.forEach((task) => {
+    if (!task.description) {
+      console.log(task.description, 'empty desc', task.index);
+      const taskToBeRemoved = new Task();
+      taskToBeRemoved.removeTask(parseInt(task.index));
+    }
     renderTaskItem(task);
   });
 
@@ -90,8 +96,11 @@ window.addEventListener('load', () => {
 
 const checkForEvents = () => {
   const allTasks = document.querySelectorAll('.task');
+  let newTaskDescription = ['', ''];
   allTasks.forEach(task => {
     task.addEventListener('click', () => {
+      newTaskDescription[0] = task.childNodes[0].childNodes[2].innerText;
+      newTaskDescription.push(parseInt(task.id));
       task.childNodes[0].childNodes[2].contentEditable = true;
       task.childNodes[0].childNodes[2].focus();
       task.childNodes[0].childNodes[2].style.outline = 'none';
@@ -101,10 +110,8 @@ const checkForEvents = () => {
       task.childNodes[4].classList.remove('d-off');
 
       task.childNodes[4].addEventListener('click', () => {
-        console.log('clicked delete');
-        console.log(task, ' to be removed');
         const targetTask = new Task();
-        targetTask.removeTask(parseInt(task.id))
+        targetTask.removeTask(parseInt(task.id) - 1)
         task.parentNode?.removeChild(task);
       });
 
@@ -120,6 +127,20 @@ const checkForEvents = () => {
         }
       });
     });
+
+    console.log(newTaskDescription[0]);
+    task.childNodes[0].childNodes[2].addEventListener('input', () => {
+      newTaskDescription[1] = task.childNodes[0].childNodes[2].innerText;
+    })
+
+    task.childNodes[0].childNodes[2].addEventListener('focusout', () => {
+      if (newTaskDescription[0] !== newTaskDescription[1] && newTaskDescription[1] !== '') {
+        const targetTask = new Task();
+        targetTask.editTask(newTaskDescription[1], parseInt(task.id) - 1);
+        newTaskDescription.length = 2;
+      }
+
+    })
   })
 }
 

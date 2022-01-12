@@ -14,4 +14,8 @@ export default class Task {
   removeTask(index) {
     DataStore.deleteTask(index);
   }
+
+  editTask(description, index) {
+    DataStore.editTask(description, index);
+  }
 }
