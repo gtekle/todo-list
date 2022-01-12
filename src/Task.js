@@ -8,7 +8,6 @@ export default class Task {
   }
 
   addTask() {
-    // console.log(this);
     DataStore.saveTasks(this);
   }
 

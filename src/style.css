@@ -22,7 +22,7 @@ body {
 #footer {
   background-color: darkgray;
   width: 100%;
-  height: 20px;
+  height: 5px;
   padding: 0;
   margin: 0;
 }
@@ -55,9 +55,13 @@ body {
   font-weight: 700;
 }
 
-.todo-heading button {
+.todo-heading .btn-refresh {
   border: none;
   background-color: #fff;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+  margin-right: 10px;
 }
 
 .todo-heading i {
@@ -101,14 +105,16 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding: 0 10px;
+  padding-left: 10px;
   font-size: 16px;
   font-weight: 500;
+  cursor: text;
 }
 
 .item-description {
   display: flex;
   align-items: center;
+  font-size: 18px;
   width: 100%;
 }
 
@@ -116,6 +122,8 @@ body {
   color: rgba(0, 0, 0, 0.8);
   width: 100%;
   margin-left: 16px;
+  margin: 0;
+  padding: 10px;
   font-size: 16px;
   font-weight: 500;
   text-align: left;
@@ -123,6 +131,30 @@ body {
 
 .todo-list .fa-ellipsis-v {
   color: grey;
+  font-size: 16px;
+  padding: 5px;
+  cursor: move;
+  z-index: 10;
+}
+
+.todo-list .btn-v-ellipsis {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.todo-list .btn-trash {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 110;
+}
+
+.todo-list .fa-trash {
+  color: red;
+  font-size: 16px;
+  padding: 5px;
 }
 
 .todo-list .fa-ellipsis-v:hover {
@@ -141,6 +173,10 @@ body {
   background-color: transparent;
   font-weight: 700;
   color: darkslategray;
+}
+
+.d-off {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
