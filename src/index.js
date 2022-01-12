@@ -1,4 +1,6 @@
 import './style.css';
+import Task from './Task.js';
+import DataStore from './DataStore';
 
 const tasks = [
   { description: 'Task4', isCompleted: false, index: 4 },
@@ -26,9 +28,10 @@ const createTaskItem = (task) => {
   const taskItem = document.createElement('li');
   taskItem.innerHTML = `<div class="item-description"><form id="form-is-completed"> 
     <input type="checkbox" name="isCompleted" value=${task.isCompleted}/></form>
-    <p>${task.description}</p> </div>
+    <p class="task-description">${task.description}</p> </div>
     <i class="fa fa-ellipsis-v"></i>`;
   taskItem.id = task.index;
+  taskItem.classList.add('task')
 
   return taskItem;
 };
@@ -46,14 +49,19 @@ const todoListHeading = () => {
 const formAddTask = () => {
   const form = document.createElement('form');
   form.id = 'form-add-task';
-  form.innerHTML = '<input type="text" name="new-task" placeholder="Add task ..."/>';
+  form.innerHTML = `<input type="text" name="newTask" placeholder="Add new task ..." required/>
+    <button type="submit" tabindex=-1 class="btn btn-add-task">
+    <i class="material-icons">&#xe31b;</i>
+    </button>`;
 
-  const btnAddTask = document.createElement('button');
-  btnAddTask.setAttribute('type', 'button');
-  btnAddTask.setAttribute('name', 'btnAddNewTask');
-  btnAddTask.innerText = 'Add';
-  btnAddTask.classList.add('btn', 'btn-add-task');
-  form.appendChild(btnAddTask);
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const { newTask } = form.elements;
+    const task = new Task(newTask.value, false, DataStore.tasks.length + 1);
+    task.addTask();
+    createTaskItem(task);
+  })
 
   return form;
 };
@@ -69,15 +77,21 @@ const btnClearAllCompleted = () => {
 };
 
 window.addEventListener('load', () => {
-  tasks.sort(compareTaskOrder);
+  if (localStorage.getItem('tasks') === 'undefined') {
+    localStorage.setItem('tasks', JSON.stringify([]));
+  }
+
+  DataStore.tasks = JSON.parse(localStorage.getItem('tasks'));
 
   const todoList = document.querySelector('.todo-list');
   todoList.appendChild(todoListHeading());
   todoList.appendChild(formAddTask());
 
-  tasks.forEach((task) => {
+  DataStore.tasks.forEach((task) => {
     todoList.appendChild(createTaskItem(task));
   });
 
   todoList.parentNode.appendChild(btnClearAllCompleted());
+
 });
+
