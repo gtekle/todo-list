@@ -76,7 +76,6 @@ const btnClearAllCompleted = () => {
 };
 
 window.addEventListener('load', () => {
-  console.log(localStorage.getItem('tasks'));
   if (localStorage.getItem('tasks') === 'undefined' || localStorage.getItem('tasks') === null) {
     localStorage.setItem('tasks', JSON.stringify([]));
   }
@@ -155,12 +154,12 @@ const checkForEvents = () => {
   const completedTasks = document.querySelectorAll('input[name="isCompleted"]');
   completedTasks.forEach((btnIsCompleted) => {
     btnIsCompleted.addEventListener('click', () => {
-      if (!completedTasks.checked) {
+      if (btnIsCompleted.checked) {
+        btnIsCompleted.checked = true;
         btnIsCompleted.parentNode.nextSibling.nextSibling.style.textDecoration = 'line-through';
-        completedTasks.checked = true;
       } else {
+        btnIsCompleted.checked = false;
         btnIsCompleted.parentNode.nextSibling.nextSibling.style.textDecoration = '';
-        completedTasks.checked = false;
       }
     });
   });
