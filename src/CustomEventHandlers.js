@@ -72,15 +72,20 @@ const checkForEvents = () => {
     });
   });
 
+  const completedTasksArray = [];
   btnClearAllCompleted.addEventListener('click', () => {
     completedTasks.forEach((btnCheck) => {
       if (btnCheck.checked === true) {
         const targetTaskItem = btnCheck.parentNode.parentNode.parentNode;
-        const targetTask = new Task();
-        targetTask.removeTask(parseInt(targetTaskItem.id));
-        targetTaskItem.parentNode.removeChild(targetTaskItem);
+        completedTasksArray.push(targetTaskItem);
       }
     });
+
+    completedTasksArray.forEach(item => {
+      const targetTask = new Task();
+      targetTask.removeTask(parseInt(item.id));
+      item.parentNode?.removeChild(item);
+    })
   });
 }
 
@@ -91,7 +96,6 @@ const refreshTaskList = () => {
   });
 
   DataStore.tasks = DataStore.updateTaskIndex();
-  // DataStore.tasks = JSON.parse(localStorage.getItem('tasks'));
   DataStore.tasks.forEach(task => {
     renderTaskItem(task);
   })
