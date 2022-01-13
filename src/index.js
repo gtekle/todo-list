@@ -18,7 +18,7 @@ const renderTaskItem = (task) => {
   const tasksContainer = document.querySelector('.todo-list');
   const taskItem = document.createElement('li');
   taskItem.innerHTML = `<div class="item-description"><form id="form-is-completed"> 
-    <input type="checkbox" name="isCompleted" value=${task.isCompleted}/></form>
+    <input type="checkbox" id='chkcompleted-${task.index}' name="isCompleted" value=${task.isCompleted}></input></form>
     <p class="task-description">${task.description}</p></div>
     <button type='button' class='btn btn-v-ellipsis'><i class="fa fa-ellipsis-v"></i></button>
     <button type='button' class='btn btn-trash d-off'><i class="fa fa-trash" aria-hidden="true"></i></button>`;
@@ -49,6 +49,12 @@ const formAddTask = () => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
 
+    if (localStorage.getItem('tasks') === 'undefined') {
+      localStorage.setItem('tasks', JSON.stringify([]));
+    }
+
+    DataStore.tasks = JSON.parse(localStorage.getItem('tasks'));
+
     const { newTask } = form.elements;
     const task = new Task(newTask.value, false, DataStore.tasks.length + 1);
     task.addTask();
@@ -70,7 +76,8 @@ const btnClearAllCompleted = () => {
 };
 
 window.addEventListener('load', () => {
-  if (localStorage.getItem('tasks') === 'undefined') {
+  console.log(localStorage.getItem('tasks'));
+  if (localStorage.getItem('tasks') === 'undefined' || localStorage.getItem('tasks') === null) {
     localStorage.setItem('tasks', JSON.stringify([]));
   }
 
@@ -96,8 +103,10 @@ window.addEventListener('load', () => {
 
 const checkForEvents = () => {
   const allTasks = document.querySelectorAll('.task');
-  let newTaskDescription = ['', ''];
+  const btnClearAllCompleted = document.querySelector('.btn-clear-completed');
+
   allTasks.forEach(task => {
+    let newTaskDescription = ['', ''];
     task.addEventListener('click', () => {
       newTaskDescription[0] = task.childNodes[0].childNodes[2].innerText;
       newTaskDescription.push(parseInt(task.id));
@@ -111,6 +120,7 @@ const checkForEvents = () => {
 
       task.childNodes[4].addEventListener('click', () => {
         const targetTask = new Task();
+        console.log('deleteing...id ', parseInt(task.id) - 1);
         targetTask.removeTask(parseInt(task.id) - 1)
         task.parentNode?.removeChild(task);
       });
@@ -128,7 +138,6 @@ const checkForEvents = () => {
       });
     });
 
-    console.log(newTaskDescription[0]);
     task.childNodes[0].childNodes[2].addEventListener('input', () => {
       newTaskDescription[1] = task.childNodes[0].childNodes[2].innerText;
     })
@@ -142,5 +151,29 @@ const checkForEvents = () => {
 
     })
   })
+
+  const completedTasks = document.querySelectorAll('input[name="isCompleted"]');
+  completedTasks.forEach((btnIsCompleted) => {
+    btnIsCompleted.addEventListener('click', () => {
+      if (!completedTasks.checked) {
+        btnIsCompleted.parentNode.nextSibling.nextSibling.style.textDecoration = 'line-through';
+        completedTasks.checked = true;
+      } else {
+        btnIsCompleted.parentNode.nextSibling.nextSibling.style.textDecoration = '';
+        completedTasks.checked = false;
+      }
+    });
+  });
+
+  btnClearAllCompleted.addEventListener('click', () => {
+    completedTasks.forEach((btnCheck) => {
+      if (btnCheck.checked === true) {
+        const targetTaskItem = btnCheck.parentNode.parentNode.parentNode;
+        const targetTask = new Task();
+        targetTask.removeTask(parseInt(targetTaskItem.id));
+        targetTaskItem.parentNode.removeChild(targetTaskItem);
+      }
+    });
+  });
 }
 

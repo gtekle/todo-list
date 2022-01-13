@@ -111,6 +111,10 @@ body {
   cursor: text;
 }
 
+input[name="isCompleted"] {
+  cursor: pointer;
+}
+
 .item-description {
   display: flex;
   align-items: center;
