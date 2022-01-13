@@ -5,7 +5,7 @@ export default class DataStore {
 
   static getTasks() {
     this.tasks = JSON.parse(localStorage.getItem('tasks'));
-    return this.tasks;
+    return JSON.parse(localStorage.getItem('tasks'));
   }
 
   static saveTasks(task) {
@@ -25,7 +25,7 @@ export default class DataStore {
 
   static updateTaskIndex() {
     const storedTasks = DataStore.getTasks();
-    for (let i = 0; i < storedTasks.length; i++) {
+    for (let i = 0; i < storedTasks.length; i += 1) {
       storedTasks[i].index = i + 1;
     }
     localStorage.setItem('tasks', JSON.stringify(storedTasks));

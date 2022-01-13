@@ -125,7 +125,6 @@ input[name="isCompleted"] {
 .todo-list li .task-description {
   color: rgba(0, 0, 0, 0.8);
   width: 100%;
-  margin-left: 16px;
   margin: 0;
   padding: 10px;
   font-size: 16px;

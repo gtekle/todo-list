@@ -1,4 +1,4 @@
-import DataStore from "./DataStore";
+import DataStore from './DataStore.js';
 
 export default class Task {
   constructor(description, isCompleted = false, index) {
@@ -12,10 +12,12 @@ export default class Task {
   }
 
   removeTask(index) {
-    DataStore.deleteTask(index);
+    this.index = index;
+    DataStore.deleteTask(this.index);
   }
 
   editTask(description, index) {
-    DataStore.editTask(description, index);
+    this.index = index;
+    DataStore.editTask(description, this.index);
   }
 }
