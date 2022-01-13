@@ -4,7 +4,7 @@ export default class DataStore {
   }
 
   static getTasks() {
-    this.tasks = localStorage.getItem(JSON.parse('tasks'));
+    this.tasks = JSON.parse(localStorage.getItem('tasks'));
     return this.tasks;
   }
 
@@ -19,7 +19,17 @@ export default class DataStore {
   }
 
   static deleteTask(index) {
-    this.tasks = this.tasks.filter((task, inx) => inx !== index);
+    this.tasks = this.tasks.filter((task) => task.index !== index);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  static updateTaskIndex() {
+    const storedTasks = DataStore.getTasks();
+    for (let i = 0; i < storedTasks.length; i++) {
+      storedTasks[i].index = i + 1;
+    }
+    localStorage.setItem('tasks', JSON.stringify(storedTasks));
+
+    return storedTasks;
   }
 }
