@@ -18,11 +18,12 @@ const renderTaskItem = (task) => {
   const tasksContainer = document.querySelector('.todo-list');
   const taskItem = document.createElement('li');
   taskItem.innerHTML = `<div class="item-description"><form id="form-is-completed"> 
-    <input type="checkbox" id='chkcompleted-${task.index}' name="isCompleted" value=${task.isCompleted}></input></form>
-    <p class="task-description">${task.description}</p></div>
-    <button type='button' class='btn btn-v-ellipsis'><i class="fa fa-ellipsis-v"></i></button>
-    <button type='button' class='btn btn-trash d-off'><i class="fa fa-trash" aria-hidden="true"></i></button>`;
+  <input type="checkbox" id='chkcompleted-${task.index}' name="isCompleted" value=${task.isCompleted}></input></form>
+  <p class="task-description">${task.description}</p></div>
+  <button type='button' class='btn btn-v-ellipsis'><i class="fa fa-ellipsis-v"></i></button>
+  <button type='button' class='btn btn-trash d-off'><i class="fa fa-trash" aria-hidden="true"></i></button>`;
   taskItem.id = task.index;
+  taskItem.setAttribute('draggable', 'true');
   taskItem.classList.add('task');
   tasksContainer.appendChild(taskItem);
 };
@@ -174,7 +175,7 @@ window.addEventListener('DOMContentLoaded', () => {
   DataStore.tasks = JSON.parse(localStorage.getItem('tasks'));
 
   DataStore.tasks.forEach((task) => {
-    if (task.description === '') {
+    if (task?.description === '') {
       const taskToBeRemoved = new Task();
       taskToBeRemoved.removeTask(parseInt(task.index, 10));
       refreshTaskList();
@@ -182,6 +183,38 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   todoList.parentNode.appendChild(btnClearAllCompleted());
+
+  const taskItems = document.querySelectorAll('.task');
+  let dragFromIndex, dropIndex;
+
+  taskItems.forEach(task => {
+    task.addEventListener('dragstart', () => {
+      // console.log('Drag Start', task.id)
+      dragFromIndex = +task.id;
+    })
+
+    task.addEventListener('dragover', (e) => {
+      // console.log('dragover', task);
+      e.preventDefault()
+      task.classList.add('over');
+    });
+    task.addEventListener('drop', (e) => {
+      // console.log('drop', task.id);
+      dropIndex = +task.id;
+      task.classList.remove('over');
+      DataStore.swapTasks(dragFromIndex - 1, dropIndex - 1);
+      // refreshTaskList();
+      window.location.reload();
+    });
+    task.addEventListener('dragenter', () => {
+      // console.log('dragenter', task.id);
+      // task.classList.add('over');
+    });
+    task.addEventListener('dragleave', () => {
+      // console.log('dragleave', task.id);
+      task.classList.remove('over');
+    });
+  })
 
   checkForEvents();
 });

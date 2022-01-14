@@ -85,7 +85,7 @@ body {
   line-height: 32px;
   padding: 3px 10px;
   font-style: italic;
-  border: none;
+  outline: none;
 }
 
 #form-add-task .btn-add-task {
@@ -162,6 +162,10 @@ input[name="isCompleted"] {
 
 .todo-list .fa-ellipsis-v:hover {
   color: black;
+}
+
+.todo-list .over {
+  background-color: #eaeaea;
 }
 
 .todo-list li > * {
