@@ -34,7 +34,6 @@ export default class DataStore {
   }
 
   static swapTasks(taskOneIndex, taskTwoIndex) {
-
     const temp = this.tasks[taskTwoIndex];
     this.tasks[taskTwoIndex] = this.tasks[taskOneIndex];
     this.tasks[taskOneIndex] = temp;
