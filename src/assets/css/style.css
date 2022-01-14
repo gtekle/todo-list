@@ -38,6 +38,10 @@ body {
   text-align: center;
 }
 
+.main-section-title {
+  color: darkslategray;
+}
+
 .todo-list {
   list-style: none;
   text-align: center;
