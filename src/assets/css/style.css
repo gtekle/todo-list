@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: cocogoose;
+  src: url('../fonts/cocogoose-pro-regular.ttf');
+}
+
 body {
   background-color: #ddd;
   margin: 0;
@@ -12,14 +17,6 @@ body {
 
 .btn {
   cursor: pointer;
-}
-
-.btn i:hover {
-  color: black;
-}
-
-.btn i:active {
-  color: blueviolet;
 }
 
 #header,
@@ -40,6 +37,7 @@ body {
 
 .main-section-title {
   color: darkslategray;
+  font-family: cocogoose, sans-serif;
 }
 
 .todo-list {
@@ -78,6 +76,14 @@ body {
   font-weight: 500;
 }
 
+.btn i:hover {
+  color: black;
+}
+
+.btn i:active {
+  color: blueviolet;
+}
+
 #form-add-task {
   display: flex;
   width: 100%;
@@ -93,7 +99,7 @@ body {
   line-height: 32px;
   padding: 3px 10px;
   font-style: italic;
-  border:none; 
+  border: none;
   outline: none;
 }
 
