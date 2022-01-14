@@ -56,6 +56,7 @@ const refreshTaskList = () => {
 const checkForEvents = () => {
   const allTasks = document.querySelectorAll('.task');
   const btnClearAllCompleted = document.querySelector('.btn-clear-completed');
+  const completedTasks = document.querySelectorAll('input[name="isCompleted"]');
 
   allTasks.forEach((task) => {
     const newTaskDescription = ['', ''];
@@ -107,7 +108,6 @@ const checkForEvents = () => {
     });
   });
 
-  const completedTasks = document.querySelectorAll('input[name="isCompleted"]');
   completedTasks.forEach((btnIsCompleted) => {
     btnIsCompleted.addEventListener('click', () => {
       if (btnIsCompleted.checked) {
@@ -135,6 +135,7 @@ const checkForEvents = () => {
       item.parentNode?.removeChild(item);
     });
   });
+  checkTaskDragEvents();
 };
 
 const formAddTask = () => {
@@ -184,37 +185,37 @@ window.addEventListener('DOMContentLoaded', () => {
 
   todoList.parentNode.appendChild(btnClearAllCompleted());
 
+  checkForEvents();
+});
+
+const checkTaskDragEvents = () => {
   const taskItems = document.querySelectorAll('.task');
   let dragFromIndex, dropIndex;
 
   taskItems.forEach(task => {
     task.addEventListener('dragstart', () => {
-      // console.log('Drag Start', task.id)
-      dragFromIndex = +task.id;
-    })
 
+      dragFromIndex = +task.id;
+    });
     task.addEventListener('dragover', (e) => {
-      // console.log('dragover', task);
+
       e.preventDefault()
       task.classList.add('over');
     });
     task.addEventListener('drop', (e) => {
-      // console.log('drop', task.id);
+
       dropIndex = +task.id;
       task.classList.remove('over');
       DataStore.swapTasks(dragFromIndex - 1, dropIndex - 1);
-      // refreshTaskList();
+
       window.location.reload();
     });
     task.addEventListener('dragenter', () => {
-      // console.log('dragenter', task.id);
-      // task.classList.add('over');
+
     });
     task.addEventListener('dragleave', () => {
-      // console.log('dragleave', task.id);
+
       task.classList.remove('over');
     });
   })
-
-  checkForEvents();
-});
+};

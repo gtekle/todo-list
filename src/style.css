@@ -71,7 +71,7 @@ body {
 }
 
 #form-add-task {
-  margin: 0;
+  display: flex;
   width: 100%;
   text-align: justify;
   background-color: #fff;
@@ -85,10 +85,15 @@ body {
   line-height: 32px;
   padding: 3px 10px;
   font-style: italic;
+  border:none; 
   outline: none;
 }
 
 #form-add-task .btn-add-task {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: grey;
   border: none;
   margin: 0;
@@ -165,7 +170,7 @@ input[name="isCompleted"] {
 }
 
 .todo-list .over {
-  background-color: #eaeaea;
+  background-color: #8b8b8b;
 }
 
 .todo-list li > * {

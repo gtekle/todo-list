@@ -24,7 +24,6 @@ export default class DataStore {
   }
 
   static updateTaskIndex() {
-    // const storedTasks = this.tasks;
     for (let i = 0; i < this.tasks.length; i += 1) {
       this.tasks[i].index = i + 1;
     }
@@ -35,7 +34,6 @@ export default class DataStore {
   }
 
   static swapTasks(taskOneIndex, taskTwoIndex) {
-    console.log('In swap method: ', taskOneIndex, taskTwoIndex)
 
     const temp = this.tasks[taskTwoIndex];
     this.tasks[taskTwoIndex] = this.tasks[taskOneIndex];
