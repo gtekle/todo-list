@@ -1,5 +1,5 @@
 import './assets/css/style.css';
-import './assets/img/todo-list-desktop-v-snapshot.png'
+import './assets/img/todo-list-desktop-v-snapshot.png';
 import Task from './modules/Task.js';
 import DataStore from './modules/DataStore.js';
 
