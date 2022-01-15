@@ -6,7 +6,7 @@
 
 ### Desktop Version
 
-![Desktop - Books List Page]( ../assets/img/todo-list-desktop-v-snapshot.png)
+![Desktop - Books List Page](./assets/img/todo-list-desktop-v-snapshot.png)
 
 In this project, you will get a simple HTML list of To Do tasks. It is built using webpack and served by a webpack dev server. The list is styled according to the specifications listed by the [minimalist](https://web.archive.org/web/20180320194056/http://www.getminimalist.com:80/) website. 
 
