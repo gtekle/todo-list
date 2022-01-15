@@ -24,12 +24,20 @@ export default class DataStore {
   }
 
   static updateTaskIndex() {
-    const storedTasks = DataStore.getTasks();
-    for (let i = 0; i < storedTasks.length; i += 1) {
-      storedTasks[i].index = i + 1;
+    for (let i = 0; i < this.tasks.length; i += 1) {
+      this.tasks[i].index = i + 1;
     }
-    localStorage.setItem('tasks', JSON.stringify(storedTasks));
 
-    return storedTasks;
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+
+    return this.tasks;
+  }
+
+  static swapTasks(taskOneIndex, taskTwoIndex) {
+    const temp = this.tasks[taskTwoIndex];
+    this.tasks[taskTwoIndex] = this.tasks[taskOneIndex];
+    this.tasks[taskOneIndex] = temp;
+
+    DataStore.updateTaskIndex();
   }
 }

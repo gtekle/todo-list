@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: cocogoose;
+  src: url('../fonts/cocogoose-pro-regular.ttf');
+}
+
 body {
   background-color: #ddd;
   margin: 0;
@@ -12,10 +17,6 @@ body {
 
 .btn {
   cursor: pointer;
-}
-
-.btn:hover {
-  color: blue;
 }
 
 #header,
@@ -32,6 +33,11 @@ body {
   min-height: calc(100vh - 64px);
   margin: 12px auto;
   text-align: center;
+}
+
+.main-section-title {
+  color: darkslategray;
+  font-family: cocogoose, sans-serif;
 }
 
 .todo-list {
@@ -70,8 +76,16 @@ body {
   font-weight: 500;
 }
 
+.btn i:hover {
+  color: black;
+}
+
+.btn i:active {
+  color: blueviolet;
+}
+
 #form-add-task {
-  margin: 0;
+  display: flex;
   width: 100%;
   text-align: justify;
   background-color: #fff;
@@ -86,9 +100,14 @@ body {
   padding: 3px 10px;
   font-style: italic;
   border: none;
+  outline: none;
 }
 
 #form-add-task .btn-add-task {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: grey;
   border: none;
   margin: 0;
@@ -162,6 +181,10 @@ input[name="isCompleted"] {
 
 .todo-list .fa-ellipsis-v:hover {
   color: black;
+}
+
+.todo-list .over {
+  background-color: #cababa;
 }
 
 .todo-list li > * {
