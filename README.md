@@ -18,7 +18,7 @@ The CRUD (create, update, delete) methods for the todo tasks are implemented. Al
 
 ## Live Demo
 
-- [Live Demo Link](https://gtekle.github.io/todo-list/)
+- [Live Demo Link](https://teks-todo-list.netlify.app)
 
 ## Getting Started
 - Install Node.js ^12.13
