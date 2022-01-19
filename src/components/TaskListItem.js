@@ -3,7 +3,7 @@ import Task from '../modules/Task.js';
 
 export const refreshTaskList = () => {
   const tasks = document.querySelectorAll('.task');
-  tasks?.forEach((prevTask) => {
+  tasks.forEach((prevTask) => {
     prevTask.parentNode.removeChild(prevTask);
   });
 
@@ -62,7 +62,7 @@ export const isTaskClicked = () => {
           const task = btnDeleteTask.parentNode;
           const targetTask = new Task();
           targetTask.removeTask(parseInt(task.id, 10));
-          task.parentNode?.removeChild(task);
+          task.parentNode.removeChild(task);
           refreshTaskList();
         });
       }
@@ -131,13 +131,13 @@ export const checkTaskDragEvents = () => {
 export const clearAllCompletedTasksEvent = () => {
   const btnClearAllCompleted = document.querySelector('.btn-clear-completed');
 
-  btnClearAllCompleted?.addEventListener('click', (event) => {
+  btnClearAllCompleted.addEventListener('click', (event) => {
     event.stopPropagation();
 
     let completedTasksArray = [];
     const completedTasks = document.querySelectorAll('input[name="isCompleted"]');
     [...completedTasks].filter((btnChecked) => btnChecked.checked === true);
-    completedTasks?.forEach((btnCheck) => {
+    completedTasks.forEach((btnCheck) => {
       if (btnCheck.checked === true) {
         const targetTaskItem = btnCheck.parentNode.parentNode.parentNode;
         completedTasksArray.push(targetTaskItem);
@@ -147,7 +147,7 @@ export const clearAllCompletedTasksEvent = () => {
     completedTasksArray.forEach((item) => {
       const targetTask = new Task();
       targetTask.removeTask(parseInt(item.id, 10));
-      item.parentNode?.removeChild(item);
+      item.parentNode.removeChild(item);
     }, (function runAfterAll() {
       completedTasksArray = [];
       refreshTaskList();
