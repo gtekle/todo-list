@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642598552166" clover="3.2.0">
-  <project timestamp="1642598552166" name="All files">
-    <metrics statements="25" coveredstatements="6" conditionals="1" coveredconditionals="1" methods="12" coveredmethods="3" elements="38" coveredelements="10" complexity="0" loc="25" ncloc="25" packages="1" files="2" classes="2"/>
-    <file name="DataStore.js" path="C:\Microverse\module02\todo-list\src\modules\DataStore.js">
-      <metrics statements="17" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="1"/>
+<coverage generated="1642599418790" clover="3.2.0">
+  <project timestamp="1642599418790" name="All files">
+    <metrics statements="25" coveredstatements="10" conditionals="1" coveredconditionals="1" methods="12" coveredmethods="6" elements="38" coveredelements="17" complexity="0" loc="25" ncloc="25" packages="1" files="2" classes="2"/>
+    <file name="DataStore.js" path="C:\Users\tobin\Desktop\My-Projects\todo-list\src\modules\DataStore.js">
+      <metrics statements="17" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="3"/>
       <line num="3" count="0" type="stmt"/>
       <line num="7" count="0" type="stmt"/>
       <line num="8" count="0" type="stmt"/>
@@ -11,8 +11,8 @@
       <line num="13" count="1" type="stmt"/>
       <line num="17" count="0" type="stmt"/>
       <line num="18" count="0" type="stmt"/>
-      <line num="22" count="0" type="stmt"/>
-      <line num="23" count="0" type="stmt"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="23" count="1" type="stmt"/>
       <line num="27" count="0" type="stmt"/>
       <line num="28" count="0" type="stmt"/>
       <line num="31" count="0" type="stmt"/>
@@ -22,14 +22,14 @@
       <line num="39" count="0" type="stmt"/>
       <line num="41" count="0" type="stmt"/>
     </file>
-    <file name="Task.js" path="C:\Microverse\module02\todo-list\src\modules\Task.js">
-      <metrics statements="8" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="4" coveredmethods="2"/>
+    <file name="Task.js" path="C:\Users\tobin\Desktop\My-Projects\todo-list\src\modules\Task.js">
+      <metrics statements="8" coveredstatements="6" conditionals="1" coveredconditionals="1" methods="4" coveredmethods="3"/>
       <line num="5" count="1" type="stmt"/>
       <line num="6" count="1" type="stmt"/>
       <line num="7" count="1" type="stmt"/>
       <line num="11" count="1" type="stmt"/>
-      <line num="15" count="0" type="stmt"/>
-      <line num="16" count="0" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="16" count="1" type="stmt"/>
       <line num="20" count="0" type="stmt"/>
       <line num="21" count="0" type="stmt"/>
     </file>
