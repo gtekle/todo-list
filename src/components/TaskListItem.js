@@ -132,7 +132,7 @@ export const clearAllCompletedTasksEvent = () => {
   const btnClearAllCompleted = document.querySelector('.btn-clear-completed');
 
   btnClearAllCompleted.addEventListener('click', (event) => {
-    event.stopPropagation();
+    event.stopImmediatePropagation();
 
     let completedTasksArray = [];
     const completedTasks = document.querySelectorAll('input[name="isCompleted"]');
@@ -145,9 +145,10 @@ export const clearAllCompletedTasksEvent = () => {
     });
 
     completedTasksArray.forEach((item) => {
+      const targetListItem = document.getElementById(item.id);
       const targetTask = new Task();
+      targetListItem.parentNode.removeChild(targetListItem);
       targetTask.removeTask(parseInt(item.id, 10));
-      item.parentNode.removeChild(item);
     }, (function runAfterAll() {
       completedTasksArray = [];
       refreshTaskList();
