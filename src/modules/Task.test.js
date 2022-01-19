@@ -11,4 +11,9 @@ describe("Task CRUD", () => {
     task.addTask(task);
     expect(DataStore.tasks.length).toBe(1);
   });
+  
+  test("removeTask", () => {
+    task.removeTask(task.index);
+    expect(DataStore.tasks.length).toBe(0);
+  });
 });
