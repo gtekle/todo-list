@@ -21,6 +21,7 @@ export default class DataStore {
   static deleteTask(index) {
     this.tasks = this.tasks.filter((task) => task.index !== index);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    DataStore.updateTaskIndex();
   }
 
   static updateTaskIndex() {

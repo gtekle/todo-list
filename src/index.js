@@ -15,6 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const todoList = document.querySelector('.todo-list');
   todoList.appendChild(todoListHeading());
   todoList.appendChild(formAddTask());
+  todoList.parentNode.appendChild(btnClearAllCompleted());
 
   if (localStorage.getItem('tasks') === 'undefined' || localStorage.getItem('tasks') === null) {
     localStorage.setItem('tasks', JSON.stringify([]));
@@ -29,8 +30,6 @@ window.addEventListener('DOMContentLoaded', () => {
       refreshTaskList();
     } else renderTaskItem(task);
   });
-
-  todoList.parentNode.appendChild(btnClearAllCompleted());
 
   checkRefreshButtonEvent();
 });
