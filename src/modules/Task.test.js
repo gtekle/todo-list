@@ -14,7 +14,7 @@ describe('add Task', () => {
     expect(DataStore.tasks.length).toBe(1);
   });
 
-  test('render Task item to the list', () => {
+  test('render task item to the list', () => {
     document.body.innerHTML = '<ul id="list" class="todo-list"></ul>';
     document.body.appendChild(btnClearAllCompleted());
     renderTaskItem(task);
@@ -24,13 +24,15 @@ describe('add Task', () => {
 });
 
 describe('remove Task', () => {
-  test('removeTask', () => {
+  test('removeTask method', () => {
     task.removeTask(task.index);
     expect(DataStore.tasks.length).toBe(0);
   });
 
-  test('remove Task from DOM', () => {
-    task.removeTask(task.index);
-    expect(DataStore.tasks.length).toBe(0);
+  test('remove task from DOM', () => {
+    const targetTask = document.querySelector(`#${task.index}`);
+    targetTask.parentNode.removeChild(targetTask);
+    const deletedTask = document.querySelectorAll('li .task');
+    expect(deletedTask).toHaveLength(0);
   });
 });
