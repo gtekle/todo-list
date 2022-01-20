@@ -18,6 +18,6 @@ export default class Task {
 
   editTask(description, index) {
     this.index = index;
-    DataStore.editTask(description, this.index);
+    DataStore.editTask(description, this.index - 1);
   }
 }
