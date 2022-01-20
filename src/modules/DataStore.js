@@ -15,7 +15,6 @@ export default class DataStore {
 
   static editTask(newDescription, index) {
     this.tasks[index].description = newDescription;
-    console.log(this.tasks);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
