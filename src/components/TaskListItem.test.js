@@ -1,9 +1,10 @@
-const $ = require('jquery');
 import 'jest-localstorage-mock';
 import Task from '../modules/Task.js';
 import DataStore from '../modules/DataStore.js';
-import renderTaskItem, { isTaskCompleted } from "./TaskListItem.js";
+import renderTaskItem, { isTaskCompleted, clearAllCompletedTasksEvent } from './TaskListItem.js';
 import btnClearAllCompleted from './ClearAllButton.js';
+
+const $ = require('jquery');
 
 const task = new Task('task one', false, 1);
 
@@ -24,5 +25,19 @@ describe('completed status', () => {
     $(taskStatus).click();
     isTaskCompleted();
     expect(taskStatus.checked).toBe(!prevTaskStatus);
+  });
+});
+
+describe('clear all completed tasks', () => {
+  test('clear all completed tasks', () => {
+    task.addTask(task);
+    renderTaskItem(task);
+    const taskStatus = document.getElementById('chkcompleted-1');
+    const prevTaskStatus = taskStatus.checked;
+    $(taskStatus).click();
+    clearAllCompletedTasksEvent();
+    // expect(taskStatus.checked).toBe(!prevTaskStatus);
+    const deletedTask = document.querySelectorAll('li .task');
+    expect(deletedTask).toHaveLength(0);
   });
 });
