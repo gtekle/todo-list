@@ -17,7 +17,6 @@ export default class Task {
   }
 
   editTask(description, index) {
-    console.log(description, index);
     this.index = index;
     DataStore.editTask(description, this.index - 1);
   }
