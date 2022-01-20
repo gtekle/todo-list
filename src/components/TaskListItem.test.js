@@ -6,7 +6,7 @@ import btnClearAllCompleted from './ClearAllButton.js';
 
 const $ = require('jquery');
 
-const task = new Task('task one', false, 1);
+const task = new Task('task bone', false, 1);
 
 beforeAll(() => {
   const todoList = document.createElement('ul');
