@@ -1,6 +1,7 @@
+const $ = require('jquery');
+import 'jest-localstorage-mock';
 import Task from '../modules/Task.js';
 import DataStore from '../modules/DataStore.js';
-import 'jest-localstorage-mock';
 import renderTaskItem, { isTaskCompleted } from "./TaskListItem.js";
 import btnClearAllCompleted from './ClearAllButton.js';
 
@@ -18,11 +19,10 @@ describe('completed status', () => {
   test('completed status', () => {
     task.addTask(task);
     renderTaskItem(task);
-    const taskStatus = document.querySelector('.task #chkcompleted-1')
-    const prevTaskStatus = taskStatus.checked
-
-    // taskStatus().simulate('click')
-    isTaskCompleted()
+    const taskStatus = document.getElementById('chkcompleted-1');
+    const prevTaskStatus = taskStatus.checked;
+    $(taskStatus).click();
+    isTaskCompleted();
     expect(taskStatus.checked).toBe(!prevTaskStatus);
   });
 });

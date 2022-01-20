@@ -53,6 +53,7 @@
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "jquery": "^3.6.0"
   }
 }
