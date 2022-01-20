@@ -5,8 +5,16 @@ import renderTaskItem from '../components/TaskListItem.js';
 import btnClearAllCompleted from '../components/ClearAllButton.js';
 
 DataStore.tasks = [];
+const todoList = document.createElement('ul');
+todoList.classList.add('todo-list');
 
-const task = new Task({ description: 'task one', isCompleted: false, index: 1 });
+document.body.appendChild(todoList);
+console.log(todoList);
+document.body.innerHTML = '<ul id="list" class="todo-list"></ul>';
+console.log(document.body);
+
+const task = new Task('task one', false, 1);
+console.log(task);
 
 describe('add Task', () => {
   test('add method', () => {
@@ -15,12 +23,27 @@ describe('add Task', () => {
   });
 
   test('render task item to the list', () => {
-    document.body.innerHTML = '<ul id="list" class="todo-list"></ul>';
+    // document.body.innerHTML = '<ul id="list" class="todo-list"></ul>';
     document.body.appendChild(btnClearAllCompleted());
     renderTaskItem(task);
     const list = document.querySelectorAll('.task');
     expect(list).toHaveLength(1);
   });
+});
+
+describe('edit Task', () => {
+  test('editTask method', () => {
+    console.log(task);
+    task.editTask('task one edited', task.index);
+    expect(DataStore.tasks[task.index - 1].description).toBe('task one edited');
+  });
+
+  // test('remove task from DOM', () => {
+  //   const targetTask = document.querySelector(`#${task.index}`);
+  //   targetTask.parentNode.removeChild(targetTask);
+  //   const deletedTask = document.querySelectorAll('li .task');
+  //   expect(deletedTask).toHaveLength(0);
+  // });
 });
 
 describe('remove Task', () => {
@@ -30,6 +53,8 @@ describe('remove Task', () => {
   });
 
   test('remove task from DOM', () => {
+    const listItem = document.querySelector('.todo-list');
+    console.log(listItem);
     const targetTask = document.querySelector(`#${task.index}`);
     targetTask.parentNode.removeChild(targetTask);
     const deletedTask = document.querySelectorAll('li .task');
