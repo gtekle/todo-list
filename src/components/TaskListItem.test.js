@@ -20,7 +20,7 @@ describe('completed status', () => {
   test('completed status', () => {
     task.addTask(task);
     renderTaskItem(task);
-    const taskStatus = document.getElementById('chkcompleted-1');
+    const taskStatus = document.getElementById('chkcompleted-' + task.index);
     const prevTaskStatus = taskStatus.checked;
     $(taskStatus).click();
     isTaskCompleted();
@@ -32,11 +32,10 @@ describe('clear all completed tasks', () => {
   test('clear all completed tasks', () => {
     task.addTask(task);
     renderTaskItem(task);
-    const taskStatus = document.getElementById('chkcompleted-1');
+    const taskStatus = document.getElementById('chkcompleted-' + task.index);
     const prevTaskStatus = taskStatus.checked;
     $(taskStatus).click();
     clearAllCompletedTasksEvent();
-    // expect(taskStatus.checked).toBe(!prevTaskStatus);
     const deletedTask = document.querySelectorAll('li .task');
     expect(deletedTask).toHaveLength(0);
   });
