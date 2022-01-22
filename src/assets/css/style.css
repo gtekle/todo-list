@@ -17,6 +17,9 @@ body {
 
 .btn {
   cursor: pointer;
+  border: none;
+  background-color: #fff;
+  margin: 0;
 }
 
 #header,
@@ -62,11 +65,8 @@ body {
 }
 
 .todo-heading .btn-refresh {
-  border: none;
-  background-color: #fff;
   text-align: right;
   padding: 0;
-  margin: 0;
   margin-right: 10px;
 }
 
@@ -109,13 +109,10 @@ body {
   justify-content: center;
   align-items: center;
   color: grey;
-  border: none;
-  margin: 0;
   font-weight: 700;
   vertical-align: text-top;
   font-size: 16px;
   line-height: 24px;
-  background-color: #fff;
 }
 
 .todo-list li {
@@ -160,16 +157,12 @@ input[name="isCompleted"] {
 }
 
 .todo-list .btn-v-ellipsis {
-  border: none;
   background-color: transparent;
-  cursor: pointer;
   z-index: 100;
 }
 
 .todo-list .btn-trash {
-  border: none;
   background-color: transparent;
-  cursor: pointer;
   z-index: 110;
 }
 
@@ -192,7 +185,6 @@ input[name="isCompleted"] {
 }
 
 .btn-clear-completed {
-  border: none;
   padding: 6px;
   margin: 10px;
   font-size: 16px;
