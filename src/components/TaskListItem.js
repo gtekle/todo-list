@@ -38,6 +38,10 @@ export const isTaskClicked = () => {
     const btnEllipsis = task.childNodes[2];
     const btnDeleteTask = task.childNodes[4];
 
+    const [descriptionDiv, , btnMove, , btnDelete] = task.childNodes;
+    const [form, , description] = descriptionDiv.childNodes;
+    const [, checkBox] = form.childNodes;
+
     task.addEventListener('click', () => {
       newTaskDescription[0] = taskDescription.innerText;
       newTaskDescription.push(parseInt(task.id, 10));
