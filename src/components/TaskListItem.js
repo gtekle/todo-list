@@ -46,7 +46,7 @@ export const isTaskClicked = () => {
       newTaskDescription[0] = taskDescription.innerText;
       newTaskDescription.push(parseInt(task.id, 10));
       taskDescription.contentEditable = true;
-      taskDescription.focus();
+      description.focus();
 
       // The following two lines of code are used to move the cursor
       // to the end of existing text in contentEditable HTML5 elements.
@@ -56,8 +56,8 @@ export const isTaskClicked = () => {
       taskDescription.style.outline = 'none';
       task.style.backgroundColor = 'lightgreen';
       taskDescription.style.color = 'blue';
-      btnEllipsis.classList.add('d-off');
-      btnDeleteTask.classList.remove('d-off');
+      btnMove.classList.add('d-off');
+      btnDelete.classList.remove('d-off');
 
       if (!btnDeleteTask.classList.contains('d-off')) {
         btnDeleteTask.addEventListener('click', (event) => {
