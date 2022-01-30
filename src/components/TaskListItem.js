@@ -34,32 +34,32 @@ export const isTaskClicked = () => {
 
   allTasks.forEach((task) => {
     const newTaskDescription = ['', ''];
-    const taskDescription = task.childNodes[0].childNodes[2];
-    const btnEllipsis = task.childNodes[2];
-    const btnDeleteTask = task.childNodes[4];
+
+    const [descriptionDiv, , btnMove, , btnDelete] = task.childNodes;
+    const [, , description] = descriptionDiv.childNodes;
 
     task.addEventListener('click', () => {
-      newTaskDescription[0] = taskDescription.innerText;
+      newTaskDescription[0] = description.innerText;
       newTaskDescription.push(parseInt(task.id, 10));
-      taskDescription.contentEditable = true;
-      taskDescription.focus();
+      description.contentEditable = true;
+      description.focus();
 
       // The following two lines of code are used to move the cursor
       // to the end of existing text in contentEditable HTML5 elements.
       document.execCommand('selectAll', false, null);
       document.getSelection().collapseToEnd();
 
-      taskDescription.style.outline = 'none';
       task.style.backgroundColor = 'lightgreen';
-      taskDescription.style.color = 'blue';
-      btnEllipsis.classList.add('d-off');
-      btnDeleteTask.classList.remove('d-off');
+      description.style.outline = 'none';
+      description.style.color = 'blue';
+      btnMove.classList.add('d-off');
+      btnDelete.classList.remove('d-off');
 
-      if (!btnDeleteTask.classList.contains('d-off')) {
-        btnDeleteTask.addEventListener('click', (event) => {
+      if (!btnDelete.classList.contains('d-off')) {
+        btnDelete.addEventListener('click', (event) => {
           event.stopImmediatePropagation();
 
-          const task = btnDeleteTask.parentNode;
+          const task = btnDelete.parentNode;
           const targetTask = new Task();
           targetTask.removeTask(parseInt(task.id, 10));
           task.parentNode.removeChild(task);
@@ -69,22 +69,25 @@ export const isTaskClicked = () => {
 
       allTasks.forEach((inactiveTask) => {
         if (task !== inactiveTask) {
-          inactiveTask.childNodes[0].childNodes[2].contentEditable = false;
+          const [descriptionDiv, , btnMove, , btnDelete] = inactiveTask.childNodes;
+          const [, , description] = descriptionDiv.childNodes;
+
           inactiveTask.style.backgroundColor = '#fff';
-          inactiveTask.childNodes[0].childNodes[2].style.color = '#000';
-          inactiveTask.childNodes[0].childNodes[2].style.opacity = '0.8';
-          inactiveTask.childNodes[0].childNodes[2].style.border = 'none';
-          inactiveTask.childNodes[4].classList.add('d-off');
-          inactiveTask.childNodes[2].classList.remove('d-off');
+          description.contentEditable = false;
+          description.style.color = '#000';
+          description.style.opacity = '0.8';
+          description.style.border = 'none';
+          btnDelete.classList.add('d-off');
+          btnMove.classList.remove('d-off');
         }
       });
     });
 
-    taskDescription.addEventListener('input', () => {
-      newTaskDescription[1] = task.childNodes[0].childNodes[2].innerText;
+    description.addEventListener('input', () => {
+      newTaskDescription[1] = description.innerText;
     });
 
-    taskDescription.addEventListener('focusout', () => {
+    description.addEventListener('focusout', () => {
       if (newTaskDescription[0] !== newTaskDescription[1] && newTaskDescription[1] !== '') {
         const targetTask = new Task();
         targetTask.editTask(newTaskDescription[1], parseInt(task.id, 10) - 1);
